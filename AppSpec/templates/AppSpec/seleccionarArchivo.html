@@ -1,0 +1,16 @@
+{% extends 'AppSpec/home.html' %}
+{% block Menu %}
+{% endblock Menu %}
+{% block titulo %}
+    <h1> Importar Archivo</h1>
+{% endblock titulo %}   
+
+{% block contenido %}
+    <form method="post" enctype="multipart/form-data" action="{% url 'import_excel' %}">
+        {% csrf_token %}
+        <input type="file" name="archivo_excel">
+        <br>
+        <br>
+        <button type="submit">Importar Excel</button>
+    </form>
+{% endblock contenido %}

@@ -1,0 +1,36 @@
+{% extends 'AppSpec/home.html' %}
+{% block encabezado %}
+<nav>
+    <form action="{% url 'logout' %}" method="post" class="d-flex">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger btnCS">Cerrar Sesión</button>
+    </form>
+
+    <form action="{% url 'areas' %}" method="GET" class="d-flex">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger btnV">Volver</button>
+    </form>
+</nav>
+{% endblock encabezado %}
+{% block Menu %}
+{% endblock Menu %}
+
+
+{% block titulo %}
+    <h1> Areas</h1>
+{% endblock titulo %}   
+
+{% block contenido %}
+    <section class="py-5 ">
+        <form action="" method="post" >
+            {% csrf_token %}
+
+            <table>
+                {{ form.as_table }}
+            </table>
+            <br>
+                        
+            <input class="btnV" type="submit" value="Agregar">
+        </form>
+    </section>
+{% endblock contenido %}

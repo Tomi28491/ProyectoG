@@ -1,0 +1,20 @@
+{% extends 'AppSpec/home.html' %}
+
+
+{% block titulo %}
+    <h1> Login</h1>
+{% endblock titulo %}   
+
+{% block contenido %}
+    <section class="py-5 ">
+        <form action="" method="post" style="margin: 10px 40%;">
+            {% csrf_token %}
+
+            <table>
+                {{ form.as_table }}
+            </table>
+            
+            <input type="submit" value="Enviar">
+        </form>
+    </section>
+{% endblock contenido %}

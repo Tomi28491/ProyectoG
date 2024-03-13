@@ -1,0 +1,242 @@
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/static/css/font/Mona-Sans.ttf");
+}
+
+.anta-regular {
+    font-family: "Anta", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+  }
+
+
+body {
+    font-family: "Mona Sans", sans-serif;
+    background-color: #48474b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  background-color: #202024;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  
+}
+
+.btnCS{
+  position: fixed;
+  right: 1%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #D10019;
+  color: white;
+  cursor: pointer;
+}
+
+.btnV{
+
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #D10019;
+  color: white;
+  cursor: pointer;
+}
+
+
+.contenedorMenu {
+    text-align: center;
+    background-color: white;
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btnImp {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #D10019;
+    color: white;
+    cursor: pointer;
+}
+
+.btnB{
+    width: 50% !important;
+
+}
+
+ .contenedorMenu button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-family: "Mona Sans", Arial,sans-serif;
+    background-color: #D10019;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #C3C5CA;
+    color: #202024;
+}
+
+.btnImp:hover{
+    background-color: #C3C5CA;
+    color: #202024;
+}
+
+.buscador{
+  height: 30px;
+  width: 40%;
+}
+
+/*  */
+
+.menuAgregar{
+  width: 90%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 20px;
+    margin-bottom: 5px;
+}
+
+.menuAgregar h5 {
+    margin: 0; /* Elimina el margen predeterminado del encabezado */
+    margin: 10px;
+}
+
+.menuAgregar a {
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    color: inherit; /* Hereda el color del texto del contenedor padre */
+}
+
+.table-scroll-areas {
+  max-height: 300px; /* Altura máxima de la tabla */
+  overflow-y: auto; /* Agrega scroll vertical */
+}
+
+.table-scroll-personas {
+  max-height: 300px; /* Altura máxima de la tabla */
+  overflow-y: auto; /* Agrega scroll vertical */
+}
+
+.selectDesplegable {
+  position: relative;
+  display: inline-block;
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.selectDesplegable select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  width: 100%;
+}
+
+.selectDesplegable select:focus {
+  outline: none;
+  border-color: #4CAF50; /* Color de borde cuando está enfocado */
+}
+
+/* Icono de flecha */
+.selectDesplegable::after {
+  content: '\25BC'; /* Código de la flecha hacia abajo */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Estilos al pasar el ratón */
+.selectDesplegable:hover select {
+  border-color: #888;
+}
+
+/* Estilo de selección */
+.selectDesplegable select option {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Estilo de selección al pasar el ratón */
+.selectDesplegable select option:hover {
+  background-color: #f9f9f9;
+}
+
+.tablaAreas{
+    width: 500px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: "Mona Sans", sans-serif;
+    border: 1px solid #ddd; /* Borde delgada en la tabla */
+    
+  }
+
+.tablaPersonas{
+    width: 100%;
+    margin-bottom: 30px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: "Mona Sans", sans-serif;
+    border: 1px solid #ddd; /* Borde delgada en la tabla */
+    
+  }
+
+  /* Estilos para las celdas de la tabla */
+  th, td {
+    padding: 15px 20px; /* Espaciado interno en las celdas */
+    text-align: center;
+    border-bottom: 1px solid #ddd; /* Borde inferior de cada fila */
+  }
+  
+  /* Estilo para la primera fila (encabezado) */
+  th {
+    width: 33%;
+    background-color: #383838; /* Color de fondo del encabezado */
+    color: #e2dfdf; /* Color del texto en el encabezado */
+  }
+
+  .btnAgregarP{
+    padding: 5px !important;
+  }
+  
+  /* Estilos para las filas impares */
+  tr:nth-child(odd) {
+    background-color: #e6dfdfab; /* Color de fondo de las filas impares */
+  }
+  
+  /* Hover efecto para las filas */
+  tr:hover {
+    background-color: #f2f2f2; /* Cambia el color de fondo al pasar el cursor sobre la fila */
+  }
+
+

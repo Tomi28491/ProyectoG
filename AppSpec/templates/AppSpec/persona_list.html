@@ -1,0 +1,51 @@
+{% extends 'AppSpec/home.html' %}
+{% block Menu %}
+{% endblock Menu %}
+
+{% block titulo %}
+    <h1> Personas</h1>
+    {% endblock titulo %}   
+    <!-- BARRA DE BUSQUEDA-->
+    {% block buscador %}
+    <div class="contBuscador">
+        <div class="menuAgregar">
+            <a href="{% url 'personas_create' %}" class="btn btn-primary btn-sm">
+                <i class="fa fa-plus fa-lg" title="Crear"></i>
+            </a>
+        </div>
+        <form action="{% url 'buscar_personas' %}" method="get">
+            {% csrf_token %}
+            <input type="text" placeholder="Buscar Personas..." name="buscar" id="buscar" class="buscador" required>
+            <button class="barra btnB" value="Buscar"><i class="fa-solid fa-magnifying-glass">Buscar</i></button>
+        </form>
+    </div>
+    {% endblock buscador %}
+
+
+{% block contenido %}
+
+<div class="table-scroll-personas">
+    <table class="tablaPersonas">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Nº de tarjeta</th>
+                <th>Area</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in persona_list  %}
+                <tr>
+                    <td>{{ p.nombre }}</td>
+                    <td>{{ p.num_tarjeta }}</td>
+                    <td>{{ p.area }}</td>
+                    <td><a href="{% url 'personas_delete' p.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-sm"
+                        title="Delete Record"></i></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock contenido %}

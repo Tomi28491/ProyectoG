@@ -1,0 +1,29 @@
+<!-- {% extends 'AppSpec/home.html' %}
+
+{% block titulo %}
+<h1>Cargar archivo Excel</h1>
+{% endblock titulo %}
+
+{% block Menu %}
+{% endblock Menu %}
+
+{% block contenido %}
+<body>
+    <h1>Cargar archivo Excel</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="archivo_excel" accept=".xlsx">
+        <button type="submit">Cargar archivo</button>
+    </form>
+    
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
+{% endblock contenido %} -->

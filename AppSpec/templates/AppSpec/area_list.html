@@ -1,0 +1,76 @@
+{% extends 'AppSpec/home.html' %}
+
+{% block titulo %}
+<h1>Áreas</h1>
+{% endblock titulo %}
+
+{% block Menu %}
+{% endblock Menu %}
+
+{% block contenido %}
+
+
+<form id="select_form">
+    <div class="menuAgregar">
+        <a href="{% url 'areas_create' %}" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-lg" title="Crear"></i></a>
+    </div>
+    <div class="selectDesplegable">
+        
+        <select id="mi_lista" name="mi_lista" onchange="obtenerPersonas()">
+            <option value="" disabled selected>Selecciona un área</option>
+            {% for area in area_list %}
+                <option value="{{ area.id }}">{{ area.nombre }}</option>
+            {% endfor %}
+        </select>
+    </div>
+   
+</form>
+<div class="table-scroll-areas">
+    <table class="tablaAreas">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Nº tarjeta</th>
+            </tr>
+        </thead>
+        <tbody id="personas_area">
+            <!-- Aquí se mostrarán las personas del área seleccionada -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Función para enviar el formulario cuando se selecciona un área
+    function obtenerPersonas() {
+        var area_id = document.getElementById('mi_lista').value;
+        if (area_id) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        mostrarPersonas(response.personas);
+                    } else {
+                        console.error('Error al obtener personas:', xhr.status, xhr.statusText);
+                    }
+                }
+            };
+            xhr.open('GET', "{% url 'obtener_personas_area' %}?area_id=" + area_id);
+            xhr.send();
+        } else {
+            // Limpiar el contenido de personas_area si no se ha seleccionado ningún área
+            document.getElementById('personas_area').innerHTML = '';
+        }
+    }
+
+    // Función para mostrar las personas del área seleccionada
+    function mostrarPersonas(personas) {
+        var lista_personas = '';
+        personas.forEach(function (persona) {
+            lista_personas += '<tr><td>' + persona.nombre + '</td><td>' + persona.num_tarjeta + '</td></tr>';
+        });
+        document.getElementById('personas_area').innerHTML = lista_personas;
+    }
+</script>
+
+{% endblock contenido %}

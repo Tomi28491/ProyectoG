@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+</head>
+
+    {% block encabezado %}
+    <nav>
+        {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="post" class="d-flex">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btnCS">Cerrar Sesión</button>
+        </form>
+        {% endif %}
+        {% if request.resolver_match.view_name != 'home' and request.resolver_match.view_name != 'login' and request.resolver_match.view_name != 'logout' %}
+        <form action="{% url 'logout' %}" method="post" class="d-flex">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btnCS">Cerrar Sesión</button>
+        </form>
+        
+        <form action="{% url 'home' %}" method="post" class="d-flex">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btnV">Volver</button>
+        </form>
+        {% endif %}
+
+    </nav>
+    {% endblock encabezado %}
+    <body>
+    <div class="contenedorMenu">
+        {% block titulo %}
+        <h1 class="anta-regular">TOMEX RRHH</h1>
+        {% endblock titulo %}
+        {% block buscador %}
+        {% endblock buscador %}
+        {% block Menu %}
+        {% if user.is_authenticated %}
+        <form action="{% url 'seleccionarArchivo' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Importar Archivo" class="btn btn-outline-danger btnImp">
+        </form>
+
+        <form action="{% url 'areas' %}" method="GET">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger">Gestionar Areas</button>
+        </form>
+        <form action="{% url 'personas' %}" method="GET">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger">Gestionar Personas</button>
+        </form>
+        {% else %}
+        <form class="d-flex">
+            <a href="{% url 'login' %}" class="btn btn-outline-info">
+                Iniciar Sesion
+            </a>
+        </form>
+    </div>
+
+    {% endif %}
+    {% endblock Menu %}
+
+
+    {% block contenido %}
+    {% endblock contenido %}
+
+</body>
+
+</html>
