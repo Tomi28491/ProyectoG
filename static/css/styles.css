@@ -22,10 +22,10 @@ body {
 }
 
 nav {
+  min-height: 58.91px;
   position: fixed;
   top: 0;
   width: 100%;
-  height: 60px;
   background-color: #202024;
   padding: 10px 20px;
   box-sizing: border-box;
@@ -33,15 +33,18 @@ nav {
 }
 
 .btnCS{
+  border: 0;
+  padding: 0;
+  height: 40px;
+  border-radius: 50%;
   position: fixed;
   right: 1%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  background-color: #D10019;
-  color: white;
+  background-color: white;
   cursor: pointer;
+}
+
+button img{
+  height: 40px;
 }
 
 .btnV{

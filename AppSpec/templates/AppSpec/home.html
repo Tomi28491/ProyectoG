@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
+    
 </head>
 
     {% block encabezado %}
@@ -18,18 +19,18 @@
         {% if user.is_authenticated %}
         <form action="{% url 'logout' %}" method="post" class="d-flex">
             {% csrf_token %}
-            <button type="submit" class="btn btn-outline-danger btnCS">Cerrar Sesión</button>
+            <button type="submit" class="btnCS"><img src="/static/css/img/fuerza.png" alt=""></button>
         </form>
         {% endif %}
         {% if request.resolver_match.view_name != 'home' and request.resolver_match.view_name != 'login' and request.resolver_match.view_name != 'logout' %}
         <form action="{% url 'logout' %}" method="post" class="d-flex">
             {% csrf_token %}
-            <button type="submit" class="btn btn-outline-danger btnCS">Cerrar Sesión</button>
+            <button type="submit" class="btnCS"><img src="/static/css/img/fuerza.png" alt=""></button>
         </form>
         
         <form action="{% url 'home' %}" method="post" class="d-flex">
             {% csrf_token %}
-            <button type="submit" class="btn btn-outline-danger btnV">Volver</button>
+            <button type="submit" class="btnV">Volver</button>
         </form>
         {% endif %}
 
@@ -58,11 +59,13 @@
             <button type="submit" class="btn btn-outline-danger">Gestionar Personas</button>
         </form>
         {% else %}
+        {% block inicioHome %}
         <form class="d-flex">
             <a href="{% url 'login' %}" class="btn btn-outline-info">
                 Iniciar Sesion
             </a>
         </form>
+        {% endblock inicioHome %}
     </div>
 
     {% endif %}
