@@ -190,13 +190,13 @@ def import_excel(request):
             })
             except Persona.DoesNotExist:
             # Manejar el caso en el que no se encuentre la persona en la base de datos
-                mensaje.update({nombre: num_tarjeta})
+             """   mensaje.update({nombre: num_tarjeta})
                 
         if len(mensaje) != 0:
             mensajito = ""
             for key, value in mensaje.items():
-                mensajito += f'La persona {value} con número de tarjeta {key} no está registrada en la base de datos. Por favor, agregue la información correspondiente.<br>'
-            return HttpResponse(mensajito)
+                mensajito += f'La persona {key} con número de tarjeta {value} no está registrada en la base de datos. Por favor, agregue la información correspondiente.<br>'
+            return HttpResponse(mensajito)"""
         datos_con_personas_ordenado = sorted(datos_con_personas, key=lambda x: x['area'])
         #datos_agrupados_por_area = defaultdict(list)
         #for data in datos_con_personas_ordenado:
