@@ -9,6 +9,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
 
 import openpyxl
+from openpyxl.styles import Alignment
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
@@ -210,7 +211,15 @@ def import_excel(request):
                 prev_area = area['area']
             else:
                 ws.append(['', area['nombre_persona'],area['num_tarjeta'],area['primera_marcacion'],area['ultima_marcacion'], area['total_horas']])
-                
+        
+        column_widths = [60, 300, 70, 150, 150,50]  # Ancho de las columnas en píxeles
+        for i, width in enumerate(column_widths, start=1):
+            ws.column_dimensions[openpyxl.utils.get_column_letter(i)].width = width / 7
+
+        for row in ws.iter_rows(min_row=1):  # Comenzar desde la segunda fila para evitar la cabecera
+            for cell in row:
+                cell.alignment = Alignment(horizontal='center', vertical='center')
+
         response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
         response['Content-Disposition'] = 'attachment; filename=datos.xlsx'
         

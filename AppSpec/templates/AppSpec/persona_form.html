@@ -3,7 +3,7 @@
 <nav>
     <form action="{% url 'logout' %}" method="post" class="d-flex">
         {% csrf_token %}
-        <button type="submit" class="btn btn-outline-danger btnCS">Cerrar Sesión</button>
+        <button type="submit" class="btnCS"><img src="/static/css/img/fuerza.png" alt=""></button>
     </form>
 
     <form action="{% url 'personas' %}" method="GET" class="d-flex">
