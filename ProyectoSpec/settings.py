@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-==x8=_-rnul@%24(@81j1kh*5bk4gun95&5ze#ln&x%icyaep$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['10.55.6.42', '127.0.0.1', 'localhost', 'marcajes.gamasa.local']
+ALLOWED_HOSTS = ['10.55.6.42', '127.0.0.1', 'localhost', 'tomex.gamasa.local']
 
 
 # Application definition
@@ -120,9 +120,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = '/home/hector/proyecto/ProyectoG/static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
+#STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'static'),
+#]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
