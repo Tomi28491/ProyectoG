@@ -10,7 +10,7 @@ class Area(models.Model):
 
 class Persona(models.Model):
     nombre = models.CharField(max_length=100)
-    num_tarjeta = models.IntegerField()
+    num_tarjeta = models.IntegerField(unique=True)
     area = models.ForeignKey(Area, on_delete=models.CASCADE, related_name="personas")
 
     def __str__(self):

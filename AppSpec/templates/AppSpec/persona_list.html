@@ -40,6 +40,8 @@
                     <td>{{ p.nombre }}</td>
                     <td>{{ p.num_tarjeta }}</td>
                     <td>{{ p.area }}</td>
+                    <td><a href="{% url 'personas_update' p.id %}" class="btn btn-info btn-custom"><i class="fa fa-edit fa-sm"
+                        title="Edit Record"></i></a></td>
                     <td><a href="{% url 'personas_delete' p.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-sm"
                         title="Delete Record"></i></a></td>
                 </tr>

@@ -24,6 +24,15 @@ from django.http import JsonResponse
 def home(request):
     return render(request, "AppSpec/home.html")
 
+# ------------------------------------------------------------------------SUMAR HORAS
+def sumar_horas_y_minutos(hora1, hora2):
+    horas1, minuto1 = map(int, hora1.split(':'))
+    horas2, minuto2 = map(int, hora2.split(':'))
+    minutos_total = minuto1 + minuto2
+    horas_totales = horas1 + horas2 + (minutos_total // 60)
+    minutos_total %= 60
+    return f"{horas_totales}:{minutos_total}"
+
 # ------------------------------------------------------------------------AREA
 class AreaList(LoginRequiredMixin, ListView):
     model = Area
@@ -73,7 +82,7 @@ class PersonaCreate(LoginRequiredMixin, CreateView):
 
 class PersonaUpdate(LoginRequiredMixin, UpdateView):
     model = Persona
-    fields = ['nombre', 'num_tarjeta', 'area']
+    fields = ['area']
     success_url = reverse_lazy('personas')
 
 
@@ -205,13 +214,22 @@ def import_excel(request):
         ws = wb.active
         ws.append(['Área', 'Nombre de la persona','Nº Tarjeta', 'Primera Marcacion', 'Ultima Marcacion', 'Horas'])
         prev_area = None
+        total_de_horas = {}
         for area in datos_con_personas_ordenado:
             if area['area'] != prev_area:
                 ws.append([area['area'], area['nombre_persona'],area['num_tarjeta'],area['primera_marcacion'],area['ultima_marcacion'], area['total_horas']])    
                 prev_area = area['area']
+                total_de_horas.update({area['nombre_persona'] : area['total_horas']})
             else:
                 ws.append(['', area['nombre_persona'],area['num_tarjeta'],area['primera_marcacion'],area['ultima_marcacion'], area['total_horas']])
-        
+                if total_de_horas.get(area['nombre_persona']):
+                    total_de_horas[area['nombre_persona']] = sumar_horas_y_minutos(total_de_horas[area['nombre_persona']], area['total_horas'])
+                else:
+                    total_de_horas.update({area['nombre_persona'] : area['total_horas']})
+        new_hoja = wb.create_sheet("Total de horas")
+        for idx, (clave, valor) in enumerate(total_de_horas.items(), start=1):
+            new_hoja[f"A{idx}"] = clave
+            new_hoja[f"B{idx}"] = valor
         column_widths = [60, 300, 70, 150, 150,50]  # Ancho de las columnas en píxeles
         for i, width in enumerate(column_widths, start=1):
             ws.column_dimensions[openpyxl.utils.get_column_letter(i)].width = width / 7
